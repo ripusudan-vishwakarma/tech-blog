@@ -27,7 +27,7 @@ This removes the need to store long-lived AWS access keys in GitHub Secrets and 
 
 The following architecture shows the authentication and credential flow:
 
-![Secure AWS Access for GitHub Actions using HashiCorp Vault](/tech-blog/images/github-actions-vault.png)
+![Secure AWS Access for GitHub Actions using HashiCorp Vault](/tech-blog/images/github-action-vault.png)
 
 ### High-level flow
 
