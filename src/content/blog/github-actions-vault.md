@@ -1,4 +1,18 @@
-\--
+---
+title: "Securing AWS Access for GitHub Actions with HashiCorp Vault"
+description: "How GitHub Actions OIDC and HashiCorp Vault can be used to provide short-lived AWS credentials for secure CI/CD."
+date: 2026-09-14
+category: "DevSecOps"
+tags:
+  - AWS
+  - GitHub Actions
+  - HashiCorp Vault
+  - OIDC
+  - DevSecOps
+  - Cloud Security
+draft: false
+---
+
 ## Introduction
 
 Long-lived AWS credentials in CI/CD pipelines create unnecessary security risk and operational overhead.
@@ -28,8 +42,6 @@ The flow is straightforward:
 ## Why avoid long-lived AWS credentials?
 
 A traditional setup often involves creating an AWS access key and storing it as a GitHub Secret.
-
-For example:
 
 ```text
 AWS_ACCESS_KEY_ID
