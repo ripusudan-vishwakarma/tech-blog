@@ -1,0 +1,207 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : import.meta.env.BASE_URL + "/";
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const topics = [
+  "AWS",
+  "Platform Engineering",
+  "DevSecOps",
+  "Terraform / IaC",
+  "CI/CD",
+  "Cloud Security",
+  "Automation",
+  "AI / GenAI"
+];
+
+const skills = [
+  "AWS",
+  "Terraform",
+  "AWS CDK",
+  "CloudFormation",
+  "GitHub Actions",
+  "Docker",
+  "Kubernetes",
+  "Python",
+  "Linux",
+  "DevSecOps",
+  "Cloud Security",
+  "AI / GenAI"
+];
+---
+
+<Layout>
+  <main>
+
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="eyebrow">
+            Platform Engineering · Cloud · Automation
+          </div>
+
+          <h1>
+            Building secure, scalable & automated platforms.
+          </h1>
+
+          <p>
+            Practical notes, architectures and lessons around AWS,
+            DevSecOps, cloud security, infrastructure automation and AI/GenAI.
+          </p>
+
+          <div class="actions">
+            <a class="btn btn-primary" href={`${base}articles/`}>
+              Explore Articles →
+            </a>
+
+            <a class="btn btn-secondary" href={`${base}about/`}>
+              About Me
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="grid-bg"></div>
+
+          <div class="arch">
+            <div class="arch-stack">
+
+              <div class="node">Developer</div>
+              <div class="arch-line"></div>
+
+              <div class="node">Platform</div>
+              <div class="arch-line"></div>
+
+              <div class="node">Cloud Infrastructure</div>
+              <div class="arch-line"></div>
+
+              <div class="node">
+                Secure · Automated · Observable
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Selected writing</div>
+            <h2>Featured Articles</h2>
+          </div>
+
+          <a class="muted" href={`${base}articles/`}>
+            View all →
+          </a>
+        </div>
+
+
+        <div class="article-grid">
+
+          {
+            posts.slice(0, 3).map((post) => (
+              <a
+                class="card"
+                href={`${base}articles/${post.id}/`}
+              >
+                <div class="tag">
+                  {post.data.category}
+                </div>
+
+                <h3>
+                  {post.data.title}
+                </h3>
+
+                <p>
+                  {post.data.description}
+                </p>
+
+                <div class="meta">
+                  {post.data.date.toLocaleDateString("en-IN")}
+                </div>
+              </a>
+            ))
+          }
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="container">
+
+        <div class="eyebrow">Topics</div>
+
+        <h2>What I write about</h2>
+
+        <div
+          class="topic-grid"
+          style="margin-top: 24px"
+        >
+          {
+            topics.map((topic) => (
+              <div class="topic">
+                {topic}
+              </div>
+            ))
+          }
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="container about-box">
+
+        <div>
+          <div class="eyebrow">About</div>
+
+          <h2>
+            Engineering notes from the cloud.
+          </h2>
+
+          <p class="muted">
+            I'm a Platform Engineer focused on AWS, cloud security,
+            DevSecOps, automation and reliable developer platforms.
+          </p>
+
+          <a
+            class="btn btn-primary"
+            href={`${base}about/`}
+          >
+            More about me →
+          </a>
+        </div>
+
+
+        <div class="skills">
+          {
+            skills.map((skill) => (
+              <span class="skill">
+                {skill}
+              </span>
+            ))
+          }
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</Layout>

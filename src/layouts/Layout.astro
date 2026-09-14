@@ -1,0 +1,10 @@
+---
+import "../styles/global.css";
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const linkedin = "https://www.linkedin.com/in/sudanripu/";
+const { title = "Ripusudan Vishwakarma | Platform Engineering", description = "Platform Engineering, AWS, DevSecOps, cloud security, automation and AI." } = Astro.props;
+---
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="description" content={description}/><meta name="theme-color" content="#070b12"/><link rel="icon" href={`${base}favicon.svg`}/><title>{title}</title></head><body>
+<header class="site-header"><div class="container nav"><a class="brand" href={base}><span class="brand-mark">R</span><span>Ripusudan</span></a><nav class="nav-links"><a href={`${base}articles/`}>Articles</a><a href={`${base}about/`}>About</a><a href={linkedin} target="_blank" rel="noreferrer">LinkedIn</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">☾</button></nav></div></header>
+<slot/><footer class="site-footer"><div class="container footer-inner"><span>© {new Date().getFullYear()} Ripusudan Vishwakarma</span><span>AWS · Platform Engineering · DevSecOps</span></div></footer>
+<script is:inline>const k="ripu-theme",r=document.documentElement,s=localStorage.getItem(k);if(s==="dark"||(!s&&matchMedia("(prefers-color-scheme:dark)").matches))r.classList.add("dark");document.getElementById("theme-toggle")?.addEventListener("click",()=>{r.classList.toggle("dark");localStorage.setItem(k,r.classList.contains("dark")?"dark":"light")});</script></body></html>
