@@ -1,0 +1,71 @@
+name: Deploy React portfolio to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - **
+    paths:
+      - "react-portfolio-template/**"
+      - ".github/workflows/react-portfolio-pages.yml"
+  workflow_dispatch:
+    inputs:
+      deploy_url:
+        description: "GitHub Pages URL for this app"
+        required: true
+        default: "https://YOUR_GITHUB_USERNAME.github.io/tech-blog/react-portfolio-template"
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      APP_DIR: react-portfolio-template
+      DEPLOY_BASE_URL: ${{ github.event.inputs.deploy_url || 'https://YOUR_GITHUB_USERNAME.github.io/tech-blog/react-portfolio-template' }}
+      DEPLOY_BRANCH: gh-pages
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: ${{ env.APP_DIR }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ${{ env.APP_DIR }}
+        run: npm install --no-fund --no-audit
+
+      - name: Set GitHub Pages homepage
+        working-directory: ${{ env.APP_DIR }}
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const file = path.join(process.cwd(), 'package.json');
+          const pkg = JSON.parse(fs.readFileSync(file, 'utf8'));
+          pkg.homepage = process.env.DEPLOY_BASE_URL;
+          fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + '\n');
+          NODE
+
+      - name: Build React app
+        working-directory: ${{ env.APP_DIR }}
+        env:
+          PUBLIC_URL: ${{ env.DEPLOY_BASE_URL }}
+        run: npm run build
+
+      - name: Publish to GitHub Pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./${{ env.APP_DIR }}/build
+          publish_branch: ${{ env.DEPLOY_BRANCH }}
+          keep_files: true
+          force_orphan: true
