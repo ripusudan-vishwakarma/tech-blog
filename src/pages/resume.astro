@@ -1,0 +1,425 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const linkedin = "https://www.linkedin.com/in/sudanripu/";
+
+const skillGroups = [
+  {
+    title: "Cloud & Platform Engineering",
+    items: [
+      "AWS",
+      "Azure",
+      "AWS Organizations",
+      "EC2",
+      "ECS",
+      "VPC",
+      "IAM",
+      "CloudFormation",
+      "Lambda",
+      "S3",
+      "CloudWatch",
+      "SSM",
+      "Route 53",
+      "DynamoDB",
+      "Aurora MySQL"
+    ]
+  },
+  {
+    title: "Infrastructure as Code",
+    items: [
+      "AWS CDK",
+      "Terraform",
+      "Terraform Enterprise (TFE)",
+      "CloudFormation"
+    ]
+  },
+  {
+    title: "CI/CD & Automation",
+    items: [
+      "GitHub Actions",
+      "AWS CodeBuild",
+      "CodePipeline",
+      "CodeDeploy",
+      "Jenkins",
+      "GitLab CI"
+    ]
+  },
+  {
+    title: "Security & Identity",
+    items: [
+      "IAM",
+      "Microsoft Active Directory",
+      "Cross-Account Access",
+      "Security Governance",
+      "Wiz"
+    ]
+  },
+  {
+    title: "Containers & Application Platforms",
+    items: [
+      "Docker",
+      "Kubernetes",
+      "ECS",
+      "ECR"
+    ]
+  },
+  {
+    title: "Programming & Scripting",
+    items: [
+      "Python",
+      "Shell Scripting",
+      "Bash"
+    ]
+  },
+  {
+    title: "Version Control",
+    items: [
+      "GitHub",
+      "GitLab",
+      "CodeCommit"
+    ]
+  }
+];
+
+const experience = [
+  {
+    company: "Commonwealth Bank of Australia",
+    location: "Bengaluru, India",
+    role: "Platform Engineer",
+    duration: "Apr 2025 - Present",
+    badge: "CBA",
+    className: "cba",
+    highlights: [
+      "Designed and developed an AWS CloudFormation Hook with a Lambda backend to evaluate AWS resources against defined security and governance controls.",
+      "Implemented deployment-time validation to determine whether AWS resources comply with required controls before allowing deployments to proceed.",
+      "Developed security tooling to improve consistency of security validation across AWS deployments.",
+      "Developed EC2 bootstrapping automation to automatically domain join VMs to Microsoft Active Directory.",
+      "Automated configuration of CloudWatch, AWS Systems Manager (SSM), and instance profiles when required configurations are not provided during provisioning.",
+      "Standardized post-provisioning configuration to ensure EC2 workloads have required monitoring, logging, auditing and management capabilities.",
+      "Contributed to the redesign of the AWS Landing Zone lifecycle, covering account provisioning, configuration, governance, security controls and deployment processes.",
+      "Improved automation and standardization of AWS platform lifecycle operations across cloud environments.",
+      "Implemented organization-wide AWS cost optimization initiatives.",
+      "Delivered approximately 30-40% cost reduction across S3 and CloudWatch Logs through optimization and usage improvements."
+    ],
+    responsibilities: [
+      "Engineer and support the AWS cloud platform with focus on Identity, Security, Governance and platform automation.",
+      "Manage and support Microsoft Active Directory integration for AWS cloud workloads.",
+      "Work on IAM, cross-account access and AWS Organizations to support secure access patterns across AWS environments.",
+      "Support AWS networking and connectivity requirements across platform workloads.",
+      "Develop and maintain infrastructure and deployment automation using Terraform Enterprise, CloudFormation, AWS CodeBuild and GitHub Actions.",
+      "Work with security and observability platforms including Wiz and Observe, along with automation workflows involving Temporal.",
+      "Troubleshoot and resolve identity, infrastructure, networking and deployment-related issues across AWS environments.",
+      "Collaborate closely with Chief Engineers and senior technical stakeholders on technical design and architecture decisions.",
+      "Participate in platform-level design discussions, implementation planning and continuous improvement initiatives.",
+      "Contribute to strengthening security, governance, reliability and operational standards across the AWS platform."
+    ]
+  },
+  {
+    company: "Persistent Systems Ltd.",
+    role: "Lead Software Engineer",
+    duration: "Nov 2022 - Apr 2025",
+    badge: "PS",
+    className: "persistent",
+    highlights: [
+      "Led migration of a PHP Laravel application from on-premises infrastructure to AWS ECS Fargate.",
+      "Migrated approximately 1 TB of MySQL data to Amazon Aurora MySQL.",
+      "Containerized multiple interdependent application components using Docker and deployed them through Amazon ECR and ECS Fargate.",
+      "Implemented AWS CDK using TypeScript for infrastructure provisioning and deployment automation.",
+      "Configured AWS services including ALB, VPC and Secrets Manager to support application deployment and secure configuration.",
+      "Improved application scalability, deployment consistency and reliability through AWS cloud-native architecture.",
+      "Designed and implemented CI/CD pipelines using AWS CDK, CodePipeline, CodeBuild and CodeDeploy.",
+      "Automated infrastructure provisioning and application deployment using Infrastructure as Code.",
+      "Implemented JAR build and validation processes using Maven.",
+      "Automated deployment and validation workflows for data-processing workloads using AWS Glue and Glue Studio.",
+      "Designed and optimized VPC and networking for AWS Glue workloads while following network security best practices.",
+      "Worked on bulk data loading and database infrastructure on AWS.",
+      "Developed and maintained custom AMIs for database workloads running on EC2.",
+      "Worked on deployment of SaaS database infrastructure across AWS, GCP and Azure."
+    ],
+    responsibilities: [
+      "Led and coordinated technical activities within the team, including planning, implementation and delivery of cloud and DevOps initiatives.",
+      "Designed and implemented AWS infrastructure and deployment solutions with focus on automation, scalability and reliability.",
+      "Applied AWS security best practices using IAM roles and policies, AWS Secrets Manager and encryption.",
+      "Worked on infrastructure provisioning, deployment automation and troubleshooting across AWS environments.",
+      "Collaborated with development and technical teams to resolve deployment, infrastructure and integration issues.",
+      "Participated in solution design and technical discussions for AWS cloud migration and infrastructure automation.",
+      "Continuously improved CI/CD processes, infrastructure automation and cloud deployment practices.",
+      "Supported delivery of secure and reliable cloud solutions in collaboration with client and internal stakeholders."
+    ],
+    recognition: "TOP TALENT - FY24\nPersistent Systems"
+  },
+  {
+    company: "Tata Consultancy Services (TCS)",
+    role: "Assistant Systems Engineer",
+    duration: "Jan 2021 - Nov 2022",
+    badge: "TCS",
+    className: "tcs",
+    highlights: [
+      "Provided L2 production support for a billing application built using Java, Spring Boot, Oracle and AWS.",
+      "Troubleshot application issues and supported production incidents to maintain application availability.",
+      "Handled production deployment and integration issues involving ETL processes and APIs.",
+      "Managed application deployments on AWS EC2 using Jenkins-based deployment processes.",
+      "Worked with Application Load Balancer (ALB) for application traffic distribution.",
+      "Supported scaling of application servers based on workload requirements.",
+      "Worked with Amazon RDS as part of the application infrastructure.",
+      "Supported deployment, configuration and scaling activities across application environments.",
+      "Assisted with automation of recurring deployment and operational activities.",
+      "Troubleshot infrastructure and application configuration issues across production environments."
+    ],
+    responsibilities: [
+      "Provided day-to-day L2 application and infrastructure support for production workloads.",
+      "Investigated and resolved application, deployment and integration issues within defined support processes.",
+      "Worked with development and operations teams to troubleshoot ETL, API and deployment-related issues.",
+      "Supported AWS infrastructure configuration, application scaling and production deployments.",
+      "Managed user accounts and access required for application operations.",
+      "Monitored application and infrastructure issues and coordinated resolution with relevant technical teams.",
+      "Participated in production deployment activities and post-deployment troubleshooting.",
+      "Contributed to improving deployment automation and operational processes.",
+      "Worked with Jenkins, AWS EC2, ALB and RDS as part of application support and deployment activities."
+    ],
+    recognition: "SPOT Award - FY22"
+  }
+];
+
+const certifications = [
+  { name: "AWS Certified Solutions Architect - Associate", badge: "SAA" },
+  { name: "AWS Certified Developer - Associate", badge: "DVA" },
+  { name: "AWS Certified Cloud Practitioner", badge: "CLF" }
+];
+
+const technologies = [
+  "AWS",
+  "AWS CDK",
+  "Terraform",
+  "CloudFormation",
+  "GitHub Actions",
+  "Jenkins",
+  "GitLab CI",
+  "Docker",
+  "Kubernetes",
+  "ECS",
+  "ECR",
+  "Python",
+  "Linux",
+  "GitHub",
+  "Microsoft Active Directory",
+  "Wiz",
+  "CloudWatch",
+  "Lambda",
+  "EC2",
+  "VPC",
+  "S3",
+  "AWS Glue"
+];
+---
+
+<Layout title="Resume | Ripusudan Vishwakarma">
+  <main class="container resume-page">
+    <section class="page-head resume-intro">
+      <div class="eyebrow">Resume</div>
+      <h1>Ripusudan Vishwakarma</h1>
+      <p class="muted">Platform Engineer | AWS | Cloud | DevOps</p>
+    </section>
+
+    <div class="resume-shell">
+      <aside class="resume-sidebar">
+        <div class="resume-profile-card">
+          <div class="avatar">RV</div>
+          <div>
+            <span class="eyebrow soft">Platform Engineer</span>
+            <h2>Ripusudan Vishwakarma</h2>
+          </div>
+        </div>
+
+        <div class="resume-panel">
+          <h3>Contact</h3>
+          <ul class="contact-list">
+            <li>
+              <strong>Email</strong>
+              <span><a href="mailto:sudan.ripu83@gmail.com">sudan.ripu83@gmail.com</a></span>
+            </li>
+            <li>
+              <strong>Phone</strong>
+              <span><a href="tel:+918889390068">+91 8889390068</a></span>
+            </li>
+            <li>
+              <strong>Location</strong>
+              <span>Bengaluru, India</span>
+            </li>
+            <li>
+              <strong>Profiles</strong>
+              <span><a href={linkedin} target="_blank" rel="noreferrer">LinkedIn</a></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="resume-panel">
+          <h3>Skills</h3>
+          <div class="skills compact">
+            {skillGroups.flatMap((group) => group.items).slice(0, 18).map((skill) => (
+              <span class="skill">{skill}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="resume-panel">
+          <h3>Tools &amp; Platforms</h3>
+          <div class="skills compact tool-tags">
+            {technologies.map((tech) => (
+              <span class="tool-tag">{tech}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="resume-panel">
+          <h3>Certifications</h3>
+          <div class="cert-stack">
+            {certifications.map((cert) => (
+              <div class="cert-mini">
+                <div class="cert-mini-badge">{cert.badge}</div>
+                <div>
+                  <strong>{cert.name}</strong>
+                  <span>Certification</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="resume-panel">
+          <h3>Hobbies</h3>
+          <ul class="simple-list">
+            <li>Cloud architecture research</li>
+            <li>Automation and systems thinking</li>
+            <li>Continuous learning</li>
+            <li>Problem solving</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="resume-main">
+        <section class="resume-panel highlight-panel">
+          <div class="panel-header">
+            <span class="eyebrow">Professional Summary</span>
+          </div>
+          <p>
+            Platform Engineer with 5 years of experience in AWS cloud infrastructure, platform engineering, DevOps and cloud security. Experienced in designing and automating secure, scalable AWS platforms using AWS CDK, Terraform, CloudFormation and CI/CD. Strong experience across AWS Identity and Access Management, Microsoft Active Directory, AWS Organizations, cross-account access, networking, infrastructure automation and deployment governance.
+          </p>
+        </section>
+
+        <section class="resume-panel">
+          <div class="panel-header">
+            <span class="eyebrow">Career</span>
+            <h2>Experience</h2>
+          </div>
+
+          <div class="timeline">
+            {experience.map((item) => (
+              <article class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="exp-header">
+                    <div class={`company-badge ${item.className}`}>{item.badge}</div>
+                    <div>
+                      <h3>{item.company}</h3>
+                      <p>{item.role}</p>
+                    </div>
+                  </div>
+
+                  <div class="company-meta">
+                    <span>{item.location}</span>
+                    <span>{item.duration}</span>
+                  </div>
+
+                  <div class="resume-subsection">
+                    <h4>Project Experience</h4>
+                    <ul class="exp-list">
+                      {item.highlights.map((entry) => (
+                        <li>{entry}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div class="resume-subsection">
+                    <h4>Other Responsibilities</h4>
+                    <ul class="exp-list">
+                      {item.responsibilities.map((entry) => (
+                        <li>{entry}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {item.recognition && (
+                    <div class="resume-subsection recognition">
+                      <h4>Recognition</h4>
+                      <p>{item.recognition}</p>
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="resume-panel">
+          <div class="panel-header">
+            <span class="eyebrow">Education</span>
+            <h2>Academics</h2>
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini-card">
+              <h3>B.Tech</h3>
+              <p>Bhilai Institute of Technology, Durg</p>
+              <span>2020</span>
+            </div>
+
+            <div class="mini-card">
+              <h3>HSC</h3>
+              <p>Oriental Public School, Ambikapur</p>
+              <span>2015</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="resume-panel">
+          <div class="panel-header">
+            <span class="eyebrow">Projects</span>
+            <h2>Academic Work</h2>
+          </div>
+
+          <ul class="resume-list">
+            <li>CLI Based Quiz Application with Multi-User Access and Result Analytics</li>
+            <li>HTML Link Status Checker with Console Output and Chart Visualization</li>
+            <li>Health Monitoring System using ESP32 Arduino and SIM800L with SMS alerts</li>
+          </ul>
+        </section>
+
+        <section class="resume-panel">
+          <div class="panel-header">
+            <span class="eyebrow">Leadership</span>
+            <h2>Experience</h2>
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini-card">
+              <h3>Member, Core Organizing Committee</h3>
+              <p>OJAS - College TechFest</p>
+              <span>2018, 2019</span>
+            </div>
+
+            <div class="mini-card">
+              <h3>Head Boy of School</h3>
+              <span>2014, 2015</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</Layout>

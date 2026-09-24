@@ -1,4 +1,4 @@
-# Ripusudan Vishwakarma — Tech Blog
+# Ripusudan Vishwakarma | Tech Blog
 
 Astro technical blog configured for GitHub Pages project hosting.
 

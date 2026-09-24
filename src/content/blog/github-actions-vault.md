@@ -102,9 +102,9 @@ If a workflow only needs to push an image to Amazon ECR, it should not receive b
 
 This creates two important controls:
 
-**Authentication** — Vault controls who can obtain credentials.
+**Authentication**: Vault controls who can obtain credentials.
 
-**Authorization** — AWS IAM controls what those credentials can do.
+**Authorization**: AWS IAM controls what those credentials can do.
 
 ## Security benefits
 
